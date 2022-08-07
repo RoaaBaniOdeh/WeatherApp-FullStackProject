@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const axios =require('axios')
 //to recive obj/data from post
 const bodyParser = require("body-parser");
 router.use(bodyParser.json());
@@ -32,13 +33,12 @@ const weatherPicture = {
 
 
 function getWeather(lon,lat,cityName,res){
-    
 //axsos get data from  api
-axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=current&appid=bd6dfc2e79ebd0350b35fe55aebcf7d3
-`)
+axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=bd6dfc2e79ebd0350b35fe55aebcf7d3`)
 .then(function (response) {
-    // handle success
-    res.send({cityName:cityName,desc: response.data.weather[0].desciption,temp: response.data.current.temp ,pic: weatherPicture[response.data.weather[0].desciption]}  )
+    console.log(response.data);
+    // handle success 
+    res.send({cityName:cityName,desc: response.data.weather[0].description,temp: (response.data.main.temp -271),pic: weatherPicture[response.data.weather[0].description]}  )
  
   
   })
