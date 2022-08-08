@@ -5,14 +5,31 @@ class citiesWeather{
     }
     async getDataFromDB()
     {
-     this.cityData= await $.get('/cities')
+      let cities=this.cityData
+      await $.get('/cities',function (citiess){
+        citiess.forEach(city => {
+             cities.push(city)
+
+        });
+    
+     })
+     
     }
+
     async getCityData(cityName)
     {
      this.cityData.push(await $.get(`/city/${cityName}`))
     }
     async saveCity(city)
     {
+        city.isSaved=true
+        
+        console.log(city);
+        for(let i=0 ; i<this.cityData.length;i++)
+        {
+            if(this.cityData[i].cityName==city.name)
+            this.cityData[i].isSaved=true
+        }
         await $.post('/city',city,function(){
 
         })
@@ -24,7 +41,7 @@ class citiesWeather{
             method:'delete',
             url:`/city/${city.name}`,
             success: function (){
-                Cities.cityData=allCities.cityData.filter((c)=>c.name!=city.name)
+                Cities.cityData=Cities.cityData.filter((c)=>c.cityName!=city.name)
             }
         })
     }

@@ -1,0 +1,35 @@
+.city-info{
+    background-color: skyblue;
+    border: 1px solid black;
+    padding: 15px;
+    display: inline;
+    margin: 10px;
+  
+    border-radius: 5px;
+    }
+    #content{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) ;
+        grid-template-areas: "p";
+        border-radius: 1px;
+    }
+    input{
+        align-items: center;
+        width: 70%;
+        height: 20px;
+        border-radius: 5px;
+    }
+    button{
+        border: 0ch;
+        background: none;
+        width: 19%;
+        height: 25px;
+        border-radius: 5px;
+    }
+    .photo
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) ;
+        grid-template-areas: "p""p";
+        border-radius: 1px;
+    }

@@ -67,9 +67,12 @@ function getLongAndLat(cityName,response) {
 
 
 router.post('/city',function(req,res){  
-    const city = {temperature:req.body.temp,name: req.body.name,
-        condition:req.body.condition,
-        conditionPic:weatherPicture[req.body.condition]  }
+    console.log(req.body);
+    const city =new City({temp:req.body.temperature,cityName: req.body.name,
+        desc:req.body.condition,
+        pic:weatherPicture[req.body.condition] ,
+        isSaved: true
+    })
         city.save()
         res.end()
 })

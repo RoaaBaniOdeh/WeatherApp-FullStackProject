@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <title>WEATHER APP</title>
 </head>
 <body>
     <div class="user-input">
         <input id="city-name" placeholder="Write the city Name">
-        <button onclick="handleSearch()">Get the Weather</button>
+        <button onclick="handleSearch()" class="fa fa-search"></button>
         <div id="content"></div>
     </div>
      
@@ -20,10 +21,21 @@
     
     {{#each cities}}
        <div  class="city-info" >
+       
            <div class="name">{{cityName}}</div>
-           <img src="{{pic}}" alt="" style="width: 50px; height: 50px;">
+
+           <br>
+<div class="photo">
+    <img src="{{pic}}" alt="" style="width: 50px; height: 50px;">
+    {{#if isSaved}}
+    <button class="removeCity fa fa-minus" ></button>
+    {{else}}
+    <button class="addCity fa fa-plus"></button>
+</div>
+           {{/if}}
+           
        <div class="temprature">{{temp}}</div>
-       <div>{{description}}</div>
+       <div class="condition">{{desc}}</div>
     </div>
       {{/each}}
     
